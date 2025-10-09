@@ -68,7 +68,7 @@ object CameraHandler {
             val player = it.player
             val (camera, passenger) = findPassenger(player) ?: return@event
             passenger.onQuit(player)
-            camera.detachPlayer(passenger)
+            camera.detach(passenger)
         }
         event<PlayerInteractEvent> {
             val player = it.player

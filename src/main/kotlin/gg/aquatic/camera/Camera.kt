@@ -47,9 +47,9 @@ class Camera(
         val result = (0 or 0x20).toByte()
         return SynchedEntityData.DataValue(0, EntityDataSerializers.BYTE, result)
     }
-    fun attachPlayer(
+    fun attach(
         player: Player,
-        onClick: (player: Player, isLeft: Boolean) -> Unit,
+        onClick: (player: Player, isLeft: Boolean) -> Unit = { _, _ -> },
         onQuit: (player: Player) -> Unit = {}
     ): CameraPassenger {
         val passenger = if (passengers.containsKey(player.uniqueId)) {
@@ -187,11 +187,11 @@ class Camera(
         }
     }
 
-    fun detachPlayer(player: Player) {
-        detachPlayer(passengers[player.uniqueId] ?: return)
+    fun detach(player: Player) {
+        detach(passengers[player.uniqueId] ?: return)
     }
 
-    fun detachPlayer(passenger: CameraPassenger) {
+    fun detach(passenger: CameraPassenger) {
         if (!passengers.containsKey(passenger.playerUUID)) return
         try {
             val player = passenger.player
@@ -254,7 +254,7 @@ class Camera(
 
     fun destroy() {
         for (passenger in passengers.values.toList()) {
-            detachPlayer(passenger)
+            detach(passenger)
         }
         passengers.clear()
         unregister()
