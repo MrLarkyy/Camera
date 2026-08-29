@@ -1,7 +1,7 @@
 plugins {
     kotlin("jvm") version "2.2.20"
     id("com.gradleup.shadow") version "9.0.0-beta11"
-    id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.23"
     id("co.uzzu.dotenv.gradle") version "2.0.0"
     `maven-publish`
 }
